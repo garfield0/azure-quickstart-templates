@@ -35,7 +35,7 @@
         "scriptFolder": ".",
         "scriptFileName": "Copy-FileFromAzure.ps1",
         "fileToBeCopied": "FileToBeCopied.txt",
-        "scriptParameters": "[concat('-artifactsLocation ', parameters('_artifactsLocation'), '\" -folderName ', variables('scriptFolder'), ' -fileToInstall ', variables('fileToBeCopied'))]"
+        "scriptParameters": "[concat('-artifactsLocation ', parameters('_artifactsLocation'),' -folderName ', variables('scriptFolder'),' -fileToInstall ', variables('fileToBeCopied'))]"
     },
     "resources": [
         {
@@ -107,7 +107,7 @@
             ],
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "Standard_D1_v2"
+                    "vmSize": "Standard_A4_v2"
                 },
                 "osProfile": {
                     "computerName": "[variables('vmName')]",
@@ -151,7 +151,7 @@
                             "fileUris": [
                                 "[concat(parameters('_artifactsLocation'), '/', variables('ScriptFolder'), '/', variables('ScriptFileName'))]"
                             ],
-                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('scriptFolder'), '/', variables('scriptFileName'))]"
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('scriptFolder'), '/', variables('scriptFileName'), ' ', variables('scriptParameters'))]"
                         }
                     }
                 }
